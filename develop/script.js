@@ -150,5 +150,37 @@ function prompts() {
   lengthSelection();
 }
 
+// Master Array
+var masterArray = [];
+
+function masterArrayBuilder() {
+  if (lowerCasePrompt) {
+    for (var i = 0; i < lowerCaseArray.length; i++) {
+      masterArray.push(lowerCaseArray[i]);
+    }
+  }
+  if (upperCasePrompt) {
+    for (var i = 0; i < upperCaseArray.length; i++) {
+      masterArray.push(upperCaseArray[i]);
+    }
+  }
+  if (numPrompt) {
+    for (var i = 0; i < numArray.length; i++) {
+      masterArray.push(numArray[i]);
+    }
+  }
+  if (specialPrompt) {
+    for (var i = 0; i < specialArray.length; i++) {
+      masterArray.push(specialArray[i]);
+    }
+  }
+}
+
+function passwordGenerator() {
+  prompts();
+  masterArrayBuilder();
+  console.log(masterArray);
+}
+
 // Button
-generateBtn.addEventListener("click", prompts);
+generateBtn.addEventListener("click", passwordGenerator);

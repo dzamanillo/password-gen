@@ -20,6 +20,66 @@ var numPrompt = true;
 var specialPrompt = true;
 var passwordLengthPrompt = 8;
 
+// Character Arrays
+
+var lowerCaseArray = [
+  "a",
+  "b",
+  "c",
+  "d",
+  "e",
+  "f",
+  "g",
+  "h",
+  "i",
+  "j",
+  "k",
+  "m",
+  "n",
+  "p",
+  "q",
+  "r",
+  "s",
+  "t",
+  "u",
+  "v",
+  "w",
+  "x",
+  "y",
+  "z",
+];
+
+var upperCaseArray = [
+  "A",
+  "B",
+  "C",
+  "D",
+  "E",
+  "F",
+  "G",
+  "H",
+  "J",
+  "K",
+  "L",
+  "M",
+  "N",
+  "P",
+  "Q",
+  "R",
+  "S",
+  "T",
+  "U",
+  "V",
+  "W",
+  "X",
+  "Y",
+  "Z",
+];
+
+var numArray = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+var specialArray = ["!", "@", "#", "$", "%", "&", "*", "?"];
+
 // Lower Case Function
 function lowerCase() {
   lowerCasePrompt = window.confirm(
@@ -57,6 +117,7 @@ function passwordLength() {
 
 //Prompts Function for Button
 function prompts() {
+  // Character type selectors
   var characterSelection = function () {
     lowerCase();
     console.log(lowerCasePrompt);
@@ -66,7 +127,7 @@ function prompts() {
     console.log(numPrompt);
     specialCharacter();
     console.log(specialPrompt);
-
+    // If no types are selected run function again
     if (!lowerCasePrompt && !upperCasePrompt && !numPrompt && !specialPrompt) {
       window.alert("You have not made a valid selection. Please try again.");
       characterSelection();
@@ -74,10 +135,11 @@ function prompts() {
   };
   characterSelection();
 
+  // Password length selector
   var lengthSelection = function () {
     passwordLength();
     console.log(passwordLengthPrompt);
-
+    // If length is less than 8 or more than 128 run function again
     if (passwordLengthPrompt < 8 || passwordLengthPrompt > 128) {
       window.alert(
         "You have selected an invalid character length. Please try again."
@@ -88,4 +150,5 @@ function prompts() {
   lengthSelection();
 }
 
+// Button
 generateBtn.addEventListener("click", prompts);

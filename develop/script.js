@@ -18,6 +18,7 @@ var lowerCasePrompt = true;
 var upperCasePrompt = true;
 var numPrompt = true;
 var specialPrompt = true;
+var passwordLengthPrompt = 8;
 
 // Lower Case Function
 function lowerCase() {
@@ -47,16 +48,44 @@ function specialCharacter() {
   );
 }
 
+// Password Length Function
+function passwordLength() {
+  passwordLengthPrompt = window.prompt(
+    "How many characters would you like your password to include? Min-8. Max-128."
+  );
+}
+
 //Prompts Function for Button
 function prompts() {
-  lowerCase();
-  console.log(lowerCasePrompt);
-  upperCase();
-  console.log(upperCasePrompt);
-  numberCharacter();
-  console.log(numPrompt);
-  specialCharacter();
-  console.log(specialPrompt);
+  var characterSelection = function () {
+    lowerCase();
+    console.log(lowerCasePrompt);
+    upperCase();
+    console.log(upperCasePrompt);
+    numberCharacter();
+    console.log(numPrompt);
+    specialCharacter();
+    console.log(specialPrompt);
+
+    if (!lowerCasePrompt && !upperCasePrompt && !numPrompt && !specialPrompt) {
+      window.alert("You have not made a valid selection. Please try again.");
+      characterSelection();
+    }
+  };
+  characterSelection();
+
+  var lengthSelection = function () {
+    passwordLength();
+    console.log(passwordLengthPrompt);
+
+    if (passwordLengthPrompt < 8 || passwordLengthPrompt > 128) {
+      window.alert(
+        "You have selected an invalid character length. Please try again."
+      );
+      lengthSelection();
+    }
+  };
+  lengthSelection();
 }
 
 generateBtn.addEventListener("click", prompts);

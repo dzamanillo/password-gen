@@ -17,6 +17,7 @@ var generateBtn = document.querySelector("#generate");
 var lowerCasePrompt = true;
 var upperCasePrompt = true;
 var numPrompt = true;
+var specialPrompt = true;
 
 // Lower Case Function
 function lowerCase() {
@@ -39,6 +40,13 @@ function numberCharacter() {
   );
 }
 
+// Special Character Function
+function specialCharacter() {
+  specialPrompt = window.confirm(
+    "Would you like to use special characters in your password?"
+  );
+}
+
 //Prompts Function for Button
 function prompts() {
   lowerCase();
@@ -47,6 +55,8 @@ function prompts() {
   console.log(upperCasePrompt);
   numberCharacter();
   console.log(numPrompt);
+  specialCharacter();
+  console.log(specialPrompt);
 }
 
 generateBtn.addEventListener("click", prompts);

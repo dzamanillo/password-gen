@@ -1,17 +1,4 @@
 // Assignment Code
-var generateBtn = document.querySelector("#generate");
-
-// // Write password to the #password input
-// function writePassword() {
-//   var password = generatePassword();
-
-//   var passwordText = document.querySelector("#password");
-
-//   passwordText.value = password;
-// }
-
-// // Add event listener to generate button
-// generateBtn.addEventListener("click", writePassword);
 
 // Default Settings
 var lowerCasePrompt = true;
@@ -19,6 +6,7 @@ var upperCasePrompt = true;
 var numPrompt = true;
 var specialPrompt = true;
 var passwordLengthPrompt = 8;
+var output = "";
 
 // Character Arrays
 
@@ -176,11 +164,31 @@ function masterArrayBuilder() {
   }
 }
 
-function passwordGenerator() {
+//Random Number
+var randomNumber = function (min, max) {
+  var value = Math.floor(Math.random() * (max - min) + min);
+  return value;
+};
+
+//Generator
+function generator() {
+  for (var i = 0; i < passwordLengthPrompt; i++) {
+    output += masterArray[randomNumber(0, masterArray.length)];
+  }
+}
+
+// Button Function
+function button() {
+  masterArray = [];
+  output = "";
   prompts();
   masterArrayBuilder();
   console.log(masterArray);
+  generator();
+  console.log(output);
+  document.getElementById("password").innerHTML = output;
 }
 
-// Button
-generateBtn.addEventListener("click", passwordGenerator);
+//Button
+var generateBtn = document.querySelector("#generate");
+generateBtn.addEventListener("click", button);

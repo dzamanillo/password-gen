@@ -16,6 +16,7 @@ var generateBtn = document.querySelector("#generate");
 // Default Settings
 var lowerCasePrompt = true;
 var upperCasePrompt = true;
+var numPrompt = true;
 
 // Lower Case Function
 function lowerCase() {
@@ -31,12 +32,21 @@ function upperCase() {
   );
 }
 
+// Number Function
+function numberCharacter() {
+  numPrompt = window.confirm(
+    "Would you like to include numbers in your password?"
+  );
+}
+
 //Prompts Function for Button
 function prompts() {
   lowerCase();
   console.log(lowerCasePrompt);
   upperCase();
   console.log(upperCasePrompt);
+  numberCharacter();
+  console.log(numPrompt);
 }
 
 generateBtn.addEventListener("click", prompts);

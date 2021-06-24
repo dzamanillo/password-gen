@@ -56,6 +56,12 @@ header {
 
 .card-footer {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+#generateNew {
+  /* display: initial; */
 }
 
 .card-footer::before {

@@ -70,11 +70,6 @@ var numArray = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 var specialArray = ["!", "@", "#", "$", "%", "&", "*", "?"];
 
-// //Case Function Object
-// var promptObj = {
-//   lowerCase: function()
-// }
-
 // Lower Case Function
 function lowerCase() {
   lowerCasePrompt = window.confirm(
@@ -185,16 +180,43 @@ function generator() {
   }
 }
 
+// Button  Count
+var buttonCount = 0;
+
 // Button Function
-function button() {
+// when generate password button is clicked the first time user is asked to fill prompts
+function buttonOption1() {
+  document.getElementById("generateNew").style.display = "none";
   masterArray = [];
   output = "";
   prompts();
   generator();
   console.log(output);
   document.getElementById("password").innerHTML = output;
+  buttonCount += 1;
+  document.getElementById("generateNew").style.display = "initial";
+}
+
+// Button 2 Function
+// when gerate button has been clicked again, user is given a new password with the same peramiters they previously selected
+function buttonOption2() {
+  output = "";
+  generator();
+  console.log(output);
+  document.getElementById("password").innerHTML = output;
+}
+
+function genPassWordButton() {
+  if (buttonCount > 0) {
+    buttonOption2();
+  } else {
+    buttonOption1();
+  }
 }
 
 //Button
 var generateBtn = document.querySelector("#generate");
-generateBtn.addEventListener("click", button);
+generateBtn.addEventListener("click", genPassWordButton);
+
+var generateNewBtn = document.querySelector("#generateNew");
+generateNewBtn.addEventListener("click", buttonOption1);

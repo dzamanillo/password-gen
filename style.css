@@ -60,10 +60,6 @@ header {
   flex-direction: column;
 }
 
-#generateNew {
-  /* display: initial; */
-}
-
 .card-footer::before {
   content: " ";
   display: block;

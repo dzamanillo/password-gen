@@ -7,6 +7,8 @@ var numPrompt = true;
 var specialPrompt = true;
 var passwordLengthPrompt = 8;
 var output = "";
+// Master Array
+var masterArray = [];
 
 // Character Arrays
 
@@ -73,6 +75,12 @@ function lowerCase() {
   lowerCasePrompt = window.confirm(
     "Would you like to include lower case characters in your password?"
   );
+  if (lowerCasePrompt) {
+    for (var i = 0; i < lowerCaseArray.length; i++) {
+      masterArray.push(lowerCaseArray[i]);
+    }
+  }
+  console.log(masterArray);
 }
 
 // Upper Case Function
@@ -80,6 +88,12 @@ function upperCase() {
   upperCasePrompt = window.confirm(
     "Would you like to include upper case characters in your password?"
   );
+  if (upperCasePrompt) {
+    for (var i = 0; i < upperCaseArray.length; i++) {
+      masterArray.push(upperCaseArray[i]);
+    }
+  }
+  console.log(masterArray);
 }
 
 // Number Function
@@ -87,6 +101,12 @@ function numberCharacter() {
   numPrompt = window.confirm(
     "Would you like to include numbers in your password?"
   );
+  if (numPrompt) {
+    for (var i = 0; i < numArray.length; i++) {
+      masterArray.push(numArray[i]);
+    }
+  }
+  console.log(masterArray);
 }
 
 // Special Character Function
@@ -94,6 +114,12 @@ function specialCharacter() {
   specialPrompt = window.confirm(
     "Would you like to use special characters in your password?"
   );
+  if (specialPrompt) {
+    for (var i = 0; i < specialArray.length; i++) {
+      masterArray.push(specialArray[i]);
+    }
+  }
+  console.log(masterArray);
 }
 
 // Password Length Function
@@ -109,14 +135,17 @@ function prompts() {
   var characterSelection = function () {
     lowerCase();
     console.log(lowerCasePrompt);
+
     upperCase();
     console.log(upperCasePrompt);
+
     numberCharacter();
     console.log(numPrompt);
+
     specialCharacter();
     console.log(specialPrompt);
     // If no types are selected run function again
-    if (!lowerCasePrompt && !upperCasePrompt && !numPrompt && !specialPrompt) {
+    if (masterArray.length <= 0) {
       window.alert("You have not made a valid selection. Please try again.");
       characterSelection();
     }
@@ -138,32 +167,6 @@ function prompts() {
   lengthSelection();
 }
 
-// Master Array
-var masterArray = [];
-
-function masterArrayBuilder() {
-  if (lowerCasePrompt) {
-    for (var i = 0; i < lowerCaseArray.length; i++) {
-      masterArray.push(lowerCaseArray[i]);
-    }
-  }
-  if (upperCasePrompt) {
-    for (var i = 0; i < upperCaseArray.length; i++) {
-      masterArray.push(upperCaseArray[i]);
-    }
-  }
-  if (numPrompt) {
-    for (var i = 0; i < numArray.length; i++) {
-      masterArray.push(numArray[i]);
-    }
-  }
-  if (specialPrompt) {
-    for (var i = 0; i < specialArray.length; i++) {
-      masterArray.push(specialArray[i]);
-    }
-  }
-}
-
 //Random Number
 var randomNumber = function (min, max) {
   var value = Math.floor(Math.random() * (max - min) + min);
@@ -177,18 +180,43 @@ function generator() {
   }
 }
 
+// Button  Count
+var buttonCount = 0;
+
 // Button Function
-function button() {
+// when generate password button is clicked the first time user is asked to fill prompts
+function buttonOption1() {
+  document.getElementById("generateNew").style.display = "none";
   masterArray = [];
   output = "";
   prompts();
-  masterArrayBuilder();
-  console.log(masterArray);
+  generator();
+  console.log(output);
+  document.getElementById("password").innerHTML = output;
+  buttonCount += 1;
+  document.getElementById("generateNew").style.display = "initial";
+}
+
+// Button 2 Function
+// when gerate button has been clicked again, user is given a new password with the same peramiters they previously selected
+function buttonOption2() {
+  output = "";
   generator();
   console.log(output);
   document.getElementById("password").innerHTML = output;
 }
 
+function genPassWordButton() {
+  if (buttonCount > 0) {
+    buttonOption2();
+  } else {
+    buttonOption1();
+  }
+}
+
 //Button
 var generateBtn = document.querySelector("#generate");
-generateBtn.addEventListener("click", button);
+generateBtn.addEventListener("click", genPassWordButton);
+
+var generateNewBtn = document.querySelector("#generateNew");
+generateNewBtn.addEventListener("click", buttonOption1);

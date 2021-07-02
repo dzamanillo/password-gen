@@ -105,6 +105,20 @@ function passwordLength() {
 
 //Prompts Function for Button
 function prompts() {
+  // Password length selector
+  var lengthSelection = function () {
+    passwordLength();
+    console.log(passwordLengthPrompt);
+    // If length is less than 8 or more than 128 run function again
+    if (passwordLengthPrompt < 8 || passwordLengthPrompt > 128) {
+      window.alert(
+        "You have selected an invalid character length. Please try again."
+      );
+      lengthSelection();
+    }
+  };
+  lengthSelection();
+
   // Character type selectors
   var characterSelection = function () {
     lowerCase();
@@ -122,20 +136,6 @@ function prompts() {
     }
   };
   characterSelection();
-
-  // Password length selector
-  var lengthSelection = function () {
-    passwordLength();
-    console.log(passwordLengthPrompt);
-    // If length is less than 8 or more than 128 run function again
-    if (passwordLengthPrompt < 8 || passwordLengthPrompt > 128) {
-      window.alert(
-        "You have selected an invalid character length. Please try again."
-      );
-      lengthSelection();
-    }
-  };
-  lengthSelection();
 }
 
 // Master Array
@@ -143,24 +143,16 @@ var masterArray = [];
 
 function masterArrayBuilder() {
   if (lowerCasePrompt) {
-    for (var i = 0; i < lowerCaseArray.length; i++) {
-      masterArray.push(lowerCaseArray[i]);
-    }
+    masterArray = masterArray.concat(lowerCaseArray);
   }
   if (upperCasePrompt) {
-    for (var i = 0; i < upperCaseArray.length; i++) {
-      masterArray.push(upperCaseArray[i]);
-    }
+    masterArray = masterArray.concat(upperCaseArray);
   }
   if (numPrompt) {
-    for (var i = 0; i < numArray.length; i++) {
-      masterArray.push(numArray[i]);
-    }
+    masterArray = masterArray.concat(numArray);
   }
   if (specialPrompt) {
-    for (var i = 0; i < specialArray.length; i++) {
-      masterArray.push(specialArray[i]);
-    }
+    masterArray = masterArray.concat(specialArray);
   }
 }
 

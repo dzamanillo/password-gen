@@ -1,34 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Password Generator</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <div class="wrapper">
-      <header>
-        <h1>Password Generator</h1>
-      </header>
-      <div class="card">
-        <div class="card-header">
-          <h2>Generate a Password</h2>
-        </div>
-        <div class="card-body">
-          <textarea
-            readonly
-            id="password"
-            placeholder="Your Secure Password"
-            aria-label="Generated Password"
-          ></textarea>
-        </div>
-        <div class="card-footer">
-          <button id="generate" class="btn">Generate Password</button>
-        </div>
-      </div>
-    </div>
-    <script src="script.js"></script>
-  </body>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<title>Password Generator</title>
+		<link rel="stylesheet" href="style.css" />
+	</head>
+	<body>
+		<div class="wrapper">
+			<header>
+				<h1>Password Generator</h1>
+			</header>
+			<div class="card">
+				<div class="card-header">
+					<h2>Generate a Password</h2>
+				</div>
+				<div class="card-body">
+					<textarea
+						readonly
+						id="password"
+						placeholder="Your Secure Password"
+						aria-label="Generated Password"
+					></textarea>
+				</div>
+
+				<form class="options">
+					<div class="count">
+						<label for="character-count">Character Count</label>
+						<input
+							type="range"
+							min="8"
+							max="128"
+							value="8"
+							class="slider"
+							id="character-count"
+							oninput="this.nextElementSibling.value = this.value"
+						/>
+						<output>8</output>
+					</div>
+					<div class="lower-case-input">
+						<label for="lower-case"
+							><input
+								type="checkbox"
+								id="lower-case"
+								name="lower-case"
+								checked
+							/>Lower Case</label
+						>
+					</div>
+					<div class="upper-case-input">
+						<label for="upper-case"
+							><input type="checkbox" id="upper-case" name="upper-case" />Upper
+							Case</label
+						>
+					</div>
+					<div class="numbers-input">
+						<label for="numbers"
+							><input
+								type="checkbox"
+								id="numbers"
+								name="numbers"
+							/>Numbers</label
+						>
+					</div>
+					<div class="special-input">
+						<label for="special"
+							><input type="checkbox" id="special" name="special" />Special
+							Characters</label
+						>
+					</div>
+
+					<div class="card-footer">
+						<button id="generate" class="btn">Generate Password</button>
+						<p class="error-message hide">
+							Error: Please select at least one character value.
+						</p>
+					</div>
+				</form>
+			</div>
+		</div>
+		<script src="script.js"></script>
+	</body>
 </html>

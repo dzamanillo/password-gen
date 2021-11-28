@@ -1,13 +1,3 @@
-// Assignment Code
-
-// Default Settings
-var lowerCasePrompt = true;
-var upperCasePrompt = true;
-var numPrompt = true;
-var specialPrompt = true;
-var passwordLengthPrompt = 8;
-var output = "";
-
 // Character Arrays
 
 var lowerCaseArray = [
@@ -68,93 +58,8 @@ var numArray = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 var specialArray = ["!", "@", "#", "$", "%", "&", "*", "?"];
 
-// Lower Case Function
-function lowerCase() {
-	lowerCasePrompt = window.confirm(
-		"Would you like to include lower case characters in your password?"
-	);
-}
-
-// Upper Case Function
-function upperCase() {
-	upperCasePrompt = window.confirm(
-		"Would you like to include upper case characters in your password?"
-	);
-}
-
-// Number Function
-function numberCharacter() {
-	numPrompt = window.confirm(
-		"Would you like to include numbers in your password?"
-	);
-}
-
-// Special Character Function
-function specialCharacter() {
-	specialPrompt = window.confirm(
-		"Would you like to use special characters in your password?"
-	);
-}
-
-// Password Length Function
-function passwordLength() {
-	passwordLengthPrompt = window.prompt(
-		"How many characters would you like your password to include? Min-8. Max-128."
-	);
-}
-
-//Prompts Function for Button
-function prompts() {
-	// Password length selector
-	var lengthSelection = function () {
-		passwordLength();
-		console.log(passwordLengthPrompt);
-		// If length is less than 8 or more than 128 run function again
-		if (passwordLengthPrompt < 8 || passwordLengthPrompt > 128) {
-			window.alert(
-				"You have selected an invalid character length. Please try again."
-			);
-			lengthSelection();
-		}
-	};
-	lengthSelection();
-
-	// Character type selectors
-	var characterSelection = function () {
-		lowerCase();
-		console.log(lowerCasePrompt);
-		upperCase();
-		console.log(upperCasePrompt);
-		numberCharacter();
-		console.log(numPrompt);
-		specialCharacter();
-		console.log(specialPrompt);
-		// If no types are selected run function again
-		if (!lowerCasePrompt && !upperCasePrompt && !numPrompt && !specialPrompt) {
-			window.alert("You have not made a valid selection. Please try again.");
-			characterSelection();
-		}
-	};
-	characterSelection();
-}
-
 // Master Array
 var masterArray = [];
-
-function masterArrayBuilder() {
-	if (lowerCasePrompt) {
-		masterArray = masterArray.concat(lowerCaseArray);
-	}
-	if (upperCasePrompt) {
-		masterArray = masterArray.concat(upperCaseArray);
-	}
-	if (numPrompt) {
-		masterArray = masterArray.concat(numArray);
-	}
-	if (specialPrompt) {
-		masterArray = masterArray.concat(specialArray);
-	}
-}
 
 //Random Number
 var randomNumber = function (min, max) {
@@ -162,25 +67,66 @@ var randomNumber = function (min, max) {
 	return value;
 };
 
-//Generator
-function generator() {
-	for (var i = 0; i < passwordLengthPrompt; i++) {
-		output += masterArray[randomNumber(0, masterArray.length)];
-	}
-}
+var btnEl = document.querySelector("#generate");
+var formEl = document.querySelector(".options");
+var errorEl = document.querySelector(".error-message");
 
-// Button Function
-function button() {
+formEl.addEventListener("submit", function (event) {
+	event.preventDefault();
+
+	// Get inputs
+	var characterCountEl = document.querySelector("#character-count");
+	var lowerCaseEl = document.querySelector("#lower-case");
+	var upperCaseEl = document.querySelector("#upper-case");
+	var numbersEl = document.querySelector("#numbers");
+	var specialEl = document.querySelector("#special");
+
+	// Get inputs values
+	let characters = characterCountEl.value;
+	let lower = lowerCaseEl.checked;
+	let upper = upperCaseEl.checked;
+	let numbers = numbersEl.checked;
+	let special = specialEl.checked;
+
+	// Place input values into object
+	let characterObject = {
+		characters,
+		lower,
+		upper,
+		numbers,
+		special,
+	};
+
+	// Init array and output
 	masterArray = [];
 	output = "";
-	prompts();
-	masterArrayBuilder();
-	console.log(masterArray);
-	generator();
-	console.log(output);
-	document.getElementById("password").innerHTML = output;
-}
 
-//Button
-var generateBtn = document.querySelector("#generate");
-generateBtn.addEventListener("click", button);
+	if (characterObject.lower) {
+		// Build masterArray
+		lowerCaseArray.forEach((character) => masterArray.push(character));
+	}
+	if (characterObject.upper) {
+		upperCaseArray.forEach((character) => masterArray.push(character));
+	}
+	if (characterObject.numbers) {
+		numArray.forEach((character) => masterArray.push(character));
+	}
+	if (characterObject.special) {
+		specialArray.forEach((character) => masterArray.push(character));
+	}
+
+	if (!masterArray.length) {
+		errorEl.classList.remove("hide");
+		return;
+	} else {
+		errorEl.classList.add("hide");
+
+		// Generate password
+		for (var i = 0; i < characterObject.characters; i++) {
+			output += masterArray[randomNumber(0, masterArray.length)];
+		}
+	}
+
+	// Display to page
+	document.getElementById("password").innerHTML = output;
+});

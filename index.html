@@ -27,7 +27,7 @@
 				</div>
 
 				<form class="options">
-					<div class="count">
+					<div class="count mb">
 						<label for="character-count">Character Count</label>
 						<input
 							type="range"
@@ -40,36 +40,45 @@
 						/>
 						<output>8</output>
 					</div>
-					<div class="lower-case-input">
-						<label for="lower-case"
-							><input
-								type="checkbox"
-								id="lower-case"
-								name="lower-case"
-								checked
-							/>Lower Case</label
-						>
-					</div>
-					<div class="upper-case-input">
-						<label for="upper-case"
-							><input type="checkbox" id="upper-case" name="upper-case" />Upper
-							Case</label
-						>
-					</div>
-					<div class="numbers-input">
-						<label for="numbers"
-							><input
-								type="checkbox"
-								id="numbers"
-								name="numbers"
-							/>Numbers</label
-						>
-					</div>
-					<div class="special-input">
-						<label for="special"
-							><input type="checkbox" id="special" name="special" />Special
-							Characters</label
-						>
+					<div class="checkbox-group">
+						<div class="letters">
+							<div class="lower-case-input mb">
+								<label for="lower-case"
+									><input
+										type="checkbox"
+										id="lower-case"
+										name="lower-case"
+										checked
+									/>Lower Case</label
+								>
+							</div>
+							<div class="upper-case-input mb">
+								<label for="upper-case"
+									><input
+										type="checkbox"
+										id="upper-case"
+										name="upper-case"
+									/>Upper Case</label
+								>
+							</div>
+						</div>
+						<div class="other-characters">
+							<div class="numbers-input mb">
+								<label for="numbers"
+									><input
+										type="checkbox"
+										id="numbers"
+										name="numbers"
+									/>Numbers</label
+								>
+							</div>
+							<div class="special-input mb">
+								<label for="special"
+									><input type="checkbox" id="special" name="special" />Special
+									Characters</label
+								>
+							</div>
+						</div>
 					</div>
 
 					<div class="card-footer">

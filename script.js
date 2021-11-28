@@ -70,6 +70,8 @@ var randomNumber = function (min, max) {
 var btnEl = document.querySelector("#generate");
 var formEl = document.querySelector(".options");
 var errorEl = document.querySelector(".error-message");
+var passwordEl = document.getElementById("password");
+var copyEl = document.querySelector(".copy-message");
 
 formEl.addEventListener("submit", function (event) {
 	event.preventDefault();
@@ -128,5 +130,21 @@ formEl.addEventListener("submit", function (event) {
 	}
 
 	// Display to page
-	document.getElementById("password").innerHTML = output;
+	passwordEl.innerHTML = output;
+});
+
+passwordEl.addEventListener("click", (event) => {
+	event.preventDefault();
+
+	// Get password value
+	var passwordText = event.target.innerHTML;
+
+	// Copy to clipboard
+	navigator.clipboard.writeText(passwordText);
+
+	copyEl.classList.remove("hide");
+
+	setTimeout(() => {
+		copyEl.classList.add("hide");
+	}, 3000);
 });

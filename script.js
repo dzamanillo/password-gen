@@ -139,12 +139,15 @@ passwordEl.addEventListener("click", (event) => {
 	// Get password value
 	var passwordText = event.target.innerHTML;
 
-	// Copy to clipboard
-	navigator.clipboard.writeText(passwordText);
+	if (passwordText.length > 1) {
+		// Copy to clipboard
+		navigator.clipboard.writeText(passwordText);
 
-	copyEl.classList.remove("hide");
+		copyEl.classList.remove("hide");
 
-	setTimeout(() => {
-		copyEl.classList.add("hide");
-	}, 3000);
+		setTimeout(() => {
+			copyEl.classList.add("hide");
+		}, 3000);
+	}
+	return;
 });

@@ -9093,4 +9093,25 @@ select {
     scroll-behavior: auto !important;
   }
 }
+
+body {
+  background-image: url(../../dist/assets/background.jpg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: repeat;
+}
+
+.header-wrapper {
+  background-color: aqua;
+  width: 75vw;
+  margin: 3rem auto;
+  border: 1px solid aqua;
+  border-radius: 10px;
+}
+
+.page-header {
+  padding: 1rem;
+  text-align: center;
+  text-shadow: 5px 5px 5px #fff;
+}
 /*# sourceMappingURL=main.css.map */

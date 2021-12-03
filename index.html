@@ -19,10 +19,54 @@
 	</head>
 
 	<body>
-		<div class="header-wrapper">
-			<h1 class="page-header">Password Generator</h1>
+		<div class="container black" id="main-container">
+			<h1 class="white-text">Password Generator</h1>
+			<div class="container">
+				<textarea
+					readonly
+					name="password"
+					id="password"
+					cols="30"
+					rows="10"
+					placeholder="Your Secure Password"
+				></textarea>
+				<form class="options">
+					<div class="count">
+						<p class="range-field" id="count-text">
+							Character Count
+							<input type="range" id="test5" min="8" max="20" value="8" />
+						</p>
+					</div>
+					<div>
+						<label>
+							<input checked id="lower-case" type="checkbox" />
+							<span>Lower Case</span>
+						</label>
+					</div>
+					<div>
+						<label>
+							<input id="upper-case" type="checkbox" />
+							<span>Upper Case</span>
+						</label>
+					</div>
+					<div>
+						<label>
+							<input id="numbers" type="checkbox" />
+							<span>Numbers</span>
+						</label>
+					</div>
+					<div>
+						<label>
+							<input id="special" type="checkbox" />
+							<span>Special</span>
+						</label>
+					</div>
+					<a href="#" class="waves-effect waves-light btn">Generate</a>
+				</form>
+			</div>
 		</div>
 		<!--JavaScript at end of body for optimized loading-->
+		<canvas class="background"></canvas>
 		<script type="text/javascript" src="/dist/js/materialize.js"></script>
 		<script type="text/javascript" src="/dist/js/script.js"></script>
 	</body>

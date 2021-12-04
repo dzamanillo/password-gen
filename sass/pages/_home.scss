@@ -1,3 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@200&family=Unica+One&display=swap");
+
+* {
+	font-family: "Crimon Pro", "Courier New";
+}
+
 body {
 	background: rgb(131, 58, 180);
 	background: linear-gradient(
@@ -16,8 +22,10 @@ body {
 #main-container {
 	border: 5px solid white;
 	border-radius: 5px;
+	max-width: 540px;
 
 	h1 {
+		font-family: "Unica One", serif;
 		text-align: center;
 		padding: $container-padding;
 	}

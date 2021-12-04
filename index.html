@@ -22,25 +22,33 @@
 		<div class="container black" id="main-container">
 			<h1 class="white-text">Password Generator</h1>
 			<div class="container">
-				<textarea
-					readonly
-					name="password"
-					id="password"
-					cols="30"
-					rows="10"
-					placeholder="Your Secure Password"
-				></textarea>
+				<div class="gradient">
+					<textarea
+						readonly
+						name="password"
+						id="password"
+						cols="30"
+						rows="10"
+						placeholder="Your Secure Password"
+					></textarea>
+				</div>
 				<form class="options">
 					<div class="count">
 						<p class="range-field" id="count-text">
-							Character Count
-							<input type="range" id="test5" min="8" max="20" value="8" />
+							Character Count: <span class="current-count">8</span>
+							<input
+								type="range"
+								id="character-count"
+								min="8"
+								max="20"
+								value="8"
+							/>
 						</p>
 					</div>
 					<div>
 						<label>
 							<input checked id="lower-case" type="checkbox" />
-							<span>Lower Case</span>
+							<span class="test">Lower Case</span>
 						</label>
 					</div>
 					<div>
@@ -61,7 +69,9 @@
 							<span>Special</span>
 						</label>
 					</div>
-					<a href="#" class="waves-effect waves-light btn">Generate</a>
+					<a href="#" class="waves-effect waves-light btn orange lighten-1"
+						>Generate</a
+					>
 				</form>
 			</div>
 		</div>

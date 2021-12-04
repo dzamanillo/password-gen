@@ -23,6 +23,19 @@ body {
 	}
 }
 
+.gradient {
+	position: relative;
+	background: linear-gradient(to right, red, purple);
+	padding: 5px;
+	background: linear-gradient(
+		130deg,
+		rgba(131, 58, 180, 1) 0%,
+		rgba(253, 29, 29, 1) 50%,
+		rgba(252, 176, 69, 1) 100%
+	);
+	border-radius: 6px;
+}
+
 #password {
 	-webkit-appearance: none;
 	-moz-appearance: none;
@@ -36,15 +49,7 @@ body {
 	padding-bottom: 85px;
 	font-size: 1.2rem;
 	text-align: center;
-	margin-top: 10px;
-	margin-bottom: 10px;
-	border: 5px solid
-		linear-gradient(
-			0deg,
-			rgba(131, 58, 180, 1) 0%,
-			rgba(253, 29, 29, 1) 50%,
-			rgba(252, 176, 69, 1) 100%
-		);
+	opacity: 0.9;
 	border-radius: 6px;
 	resize: none;
 	overflow: hidden;
@@ -53,6 +58,7 @@ body {
 
 	&::placeholder {
 		color: black;
+		opacity: 0.75;
 	}
 }
 

@@ -1,0 +1,6 @@
+@import "../abstracts/variables";
+
+[type="checkbox"]:checked + span:not(.lever):before {
+	border-right: 2px solid $orange;
+	border-bottom: 2px solid $orange;
+}

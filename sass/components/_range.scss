@@ -1,0 +1,19 @@
+@import "../abstracts/variables";
+
+input[type="range"] {
+	border: 1px solid black;
+}
+
+input[type="range"] + .thumb {
+	background-color: $orange;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+	background-color: $orange;
+}
+input[type="range"]::-moz-range-thumb {
+	background-color: $orange;
+}
+input[type="range"]::-ms-thumb {
+	background-color: $orange;
+}
